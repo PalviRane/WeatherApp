@@ -1,15 +1,15 @@
 //
-//  ViewController.h
+//  SignInCollectionViewCell.m
 //  WeatherApp
 //
 //  Created by Potter on 07/04/17.
 //  Copyright © 2017 PalviRane. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SignInCollectionViewCell.h"
 
-@interface ViewController : UIViewController
+@implementation SignInCollectionViewCell
+
 
 
 @end
-
