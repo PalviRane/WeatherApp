@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pyb-JE-2te">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kk0-CF-Uf7">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,24 +31,24 @@
                                 <rect key="frame" x="0.0" y="-52" width="320" height="620"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="a67-NX-Nda">
-                                    <size key="itemSize" width="351" height="516"/>
+                                    <size key="itemSize" width="351" height="538"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SignInCellIdentifier" id="Ibu-8U-x0k" customClass="SignInCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="52" width="351" height="516"/>
+                                        <rect key="frame" x="0.0" y="41" width="351" height="538"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="351" height="516"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="538"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WLP_Cloud" translatesAutoresizingMaskIntoConstraints="NO" id="Au4-SP-T0k">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="516"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="538"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uh2-ak-ZhE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="516"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="538"/>
                                                     <color key="backgroundColor" red="0.21587551128235316" green="0.21587551128235316" blue="0.21587551128235316" alpha="0.82140733131487886" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                             </subviews>
@@ -75,13 +75,13 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Guest." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etH-kP-74d">
-                                <rect key="frame" x="16" y="122" width="288" height="41"/>
+                                <rect key="frame" x="16" y="121.5" width="288" height="41"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to get weather details of over 2,00,000 cities across the world." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uL-2p-Gia">
-                                <rect key="frame" x="16.5" y="178" width="288" height="46.5"/>
+                                <rect key="frame" x="16.5" y="177.5" width="288" height="46.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -93,6 +93,9 @@
                                     <constraint firstAttribute="width" secondItem="3XA-wo-38z" secondAttribute="height" multiplier="1:1" id="w58-RH-Bct"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="facebook"/>
+                                <connections>
+                                    <action selector="facebookLoginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dsE-uN-a2b"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +124,7 @@
             </objects>
             <point key="canvasLocation" x="1027.5" y="35.91549295774648"/>
         </scene>
-        <!--Welcome View Controller-->
+        <!--Welcome-->
         <scene sceneID="hCg-un-s2r">
             <objects>
                 <viewController storyboardIdentifier="WelcomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sei-1b-khk" customClass="WelcomeViewController" sceneMemberID="viewController">
@@ -133,22 +136,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FPS-Dl-Sfn">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="users" translatesAutoresizingMaskIntoConstraints="NO" id="GhT-j5-x6M">
+                                <rect key="frame" x="89" y="94" width="142" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GhT-j5-x6M" secondAttribute="height" multiplier="1:1" id="Q5q-wr-jyy"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Palvi." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzp-4j-ezJ">
+                                <rect key="frame" x="105" y="264" width="110" height="40"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select an option to proceed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7z-L3-H62">
+                                <rect key="frame" x="32" y="312" width="256" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HnK-xB-cjg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbW-NO-WOn">
+                                <rect key="frame" x="16" y="403.5" width="288" height="45"/>
+                                <color key="backgroundColor" red="0.24313725490196078" green="0.36862745098039218" blue="0.49803921568627452" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="QkF-20-sZb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="Detect Current Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-CC-06p">
+                                <rect key="frame" x="16" y="472.5" width="288" height="45"/>
+                                <color key="backgroundColor" red="0.87058823529411766" green="0.32549019607843138" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Search City">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6Xd-0c-NET" firstAttribute="top" secondItem="FPS-Dl-Sfn" secondAttribute="bottom" id="ITg-Vg-YHV"/>
-                            <constraint firstItem="FPS-Dl-Sfn" firstAttribute="leading" secondItem="Jsw-25-8gh" secondAttribute="leading" id="Sgx-wg-f6d"/>
-                            <constraint firstItem="FPS-Dl-Sfn" firstAttribute="top" secondItem="qEF-YI-5wt" secondAttribute="bottom" id="onS-xc-Yjk"/>
-                            <constraint firstAttribute="trailing" secondItem="FPS-Dl-Sfn" secondAttribute="trailing" id="teC-lR-lFT"/>
+                            <constraint firstItem="NbW-NO-WOn" firstAttribute="width" secondItem="Jsw-25-8gh" secondAttribute="width" multiplier="0.9" id="5Bo-1t-DMx"/>
+                            <constraint firstItem="uzp-4j-ezJ" firstAttribute="centerX" secondItem="Jsw-25-8gh" secondAttribute="centerX" id="5d9-vk-mF1"/>
+                            <constraint firstItem="GhT-j5-x6M" firstAttribute="centerX" secondItem="Jsw-25-8gh" secondAttribute="centerX" id="9oi-Ve-GaE"/>
+                            <constraint firstItem="GhT-j5-x6M" firstAttribute="top" secondItem="qEF-YI-5wt" secondAttribute="bottom" constant="30" id="App-Oh-RXH"/>
+                            <constraint firstItem="E7z-L3-H62" firstAttribute="centerX" secondItem="Jsw-25-8gh" secondAttribute="centerX" id="GEK-LR-ZDZ"/>
+                            <constraint firstItem="NbW-NO-WOn" firstAttribute="centerY" secondItem="Jsw-25-8gh" secondAttribute="centerY" multiplier="1.5" id="J4r-0x-BYH"/>
+                            <constraint firstItem="5Xc-CC-06p" firstAttribute="centerX" secondItem="Jsw-25-8gh" secondAttribute="centerX" id="JRc-JX-g0d"/>
+                            <constraint firstItem="uzp-4j-ezJ" firstAttribute="top" secondItem="GhT-j5-x6M" secondAttribute="bottom" constant="28" id="L6I-6M-0KY"/>
+                            <constraint firstItem="5Xc-CC-06p" firstAttribute="top" secondItem="NbW-NO-WOn" secondAttribute="bottom" constant="24" id="N8u-Xu-Tic"/>
+                            <constraint firstItem="E7z-L3-H62" firstAttribute="width" secondItem="Jsw-25-8gh" secondAttribute="width" multiplier="0.8" id="WTA-Os-cqQ"/>
+                            <constraint firstItem="E7z-L3-H62" firstAttribute="top" secondItem="uzp-4j-ezJ" secondAttribute="bottom" constant="8" id="cgu-dP-WqR"/>
+                            <constraint firstItem="5Xc-CC-06p" firstAttribute="width" secondItem="NbW-NO-WOn" secondAttribute="width" id="jgL-bi-vMv"/>
+                            <constraint firstItem="GhT-j5-x6M" firstAttribute="height" secondItem="Jsw-25-8gh" secondAttribute="height" multiplier="0.25" id="mu8-JQ-JBX"/>
+                            <constraint firstItem="5Xc-CC-06p" firstAttribute="height" secondItem="NbW-NO-WOn" secondAttribute="height" id="rtd-8L-V9q"/>
+                            <constraint firstItem="NbW-NO-WOn" firstAttribute="centerX" secondItem="Jsw-25-8gh" secondAttribute="centerX" id="vTK-oF-58k"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bLs-aQ-gic"/>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="FPS-Dl-Sfn" id="tXa-dh-VzR"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Welcome" id="bLs-aQ-gic"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWa-rL-TDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -194,5 +243,6 @@
     <resources>
         <image name="WLP_Cloud" width="540" height="960"/>
         <image name="facebook" width="256" height="256"/>
+        <image name="users" width="149" height="150"/>
     </resources>
 </document>

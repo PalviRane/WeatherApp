@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SignInDataController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface SignInViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 

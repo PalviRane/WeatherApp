@@ -129,4 +129,51 @@
 
 #pragma mark - Facebook
 
+- (IBAction)facebookLoginPressed:(id)sender
+{
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    
+    [login logInWithReadPermissions: @[@"email", @"public_profile"]
+                 fromViewController:self
+                            handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+                                if (error)
+                                {
+                                    NSLog(@"Process error");
+
+                                }
+                                else if (result.isCancelled)
+                                {
+                                    NSLog(@"Cancelled");
+
+                                } else
+                                {
+                                    NSLog(@"Logged in");
+                                    
+                                    if ([FBSDKAccessToken currentAccessToken])
+                                    {
+                                        
+                                        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"id, name, birthday, email, gender, picture.width(250).height(250)"}]
+                                         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                                             if (!error)
+                                             {
+                                                 
+                                                 NSLog(@"fetched user:%@", result);
+                                                
+                                             }
+                                             else
+                                             {
+                                                 NSLog(@"fb Failure");
+                                                 
+                                                 
+                                             }
+                                         }];
+                                        
+                                    }
+                                    
+                                }
+                            }];
+
+}
+
+
 @end
