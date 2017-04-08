@@ -62,6 +62,7 @@
 		297A09DF1E993F4000FCF812 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		297A09E11E99402800FCF812 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		297A09E21E99402800FCF812 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		297A09E51E9984EF00FCF812 /* HeaderConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderConstants.h; sourceTree = "<group>"; };
 		29D50B6E1E97D86700526640 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		29D50B6F1E97D86700526640 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		29D50B711E97D87D00526640 /* SignInDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInDataController.h; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 			children = (
 				2942E8271E96C974003CB273 /* AppDelegate.h */,
 				2942E8281E96C974003CB273 /* AppDelegate.m */,
+				297A09E51E9984EF00FCF812 /* HeaderConstants.h */,
 				297A09DE1E993F2600FCF812 /* Frameworks */,
 				297A07101E98EDC400FCF812 /* Welcome */,
 				29D50B6A1E97D80200526640 /* Sign In */,

@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
+#import "HeaderConstants.h"
+
+@import GooglePlaces;
+
 @interface AppDelegate ()
 
 @end
@@ -20,6 +24,8 @@
     
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+    
+    [GMSPlacesClient provideAPIKey:GOOGLE_API_KEY];
     
     return YES;
 }
