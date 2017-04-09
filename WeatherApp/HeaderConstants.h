@@ -34,5 +34,20 @@
 //Google
 #define GOOGLE_API_KEY @"AIzaSyBKUiYPS5pltDza67dlAK4JTyJ-493Axoo"
 
+//Colors
+
+#define PINK_COLOR [UIColor colorWithRed:222.0f/255.0f green:83.0f/255.0f blue:100.0f/255.0f alpha:1.0]
+#define ORANGE_COLOR [UIColor colorWithRed:227.0f/255.0f green:138.0f/255.0f blue:88.0f/255.0f alpha:1.0]
+#define YELLOW_COLOR [UIColor colorWithRed:227.0f/255.0f green:182.0f/255.0f blue:79.0f/255.0f alpha:1.0]
+#define GREEN_COLOR  [UIColor colorWithRed:80.0f/255.0f green:151.0f/255.0f blue:71.0f/255.0f alpha:1.0]
+#define BEIGE_COLOR [UIColor colorWithRed:186.0f/255.0f green:167.0f/255.0f blue:132.0f/255.0f alpha:1.0]
+#define LIGHT_GRAY_COLOR [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0]
+#define DARK_BLUE_COLOR [UIColor colorWithRed:62.0f/255.0f green:94.0f/255.0f blue:127.0f/255.0f alpha:1.0]
+#define LIGHT_BLUE_COLOR [UIColor colorWithRed:137.0f/255.0f green:168.0f/255.0f blue:194.0f/255.0f alpha:1.0]
+#define SKY_BLUE_COLOR [UIColor colorWithRed:92.0f/255.0f green:174.0f/255.0f blue:188.0f/255.0f alpha:1.0]
+#define DARK_GRAY_COLOR [UIColor colorWithRed:52.0f/255.0f green:52.0f/255.0f blue:52.0f/255.0f alpha:1.0]
+#define PURPLE_COLOR [UIColor colorWithRed:117.0f/255.0f green:96.0f/255.0f blue:139.0f/255.0f alpha:1.0]
+#define BROWN_COLOR [UIColor colorWithRed:137.0f/255.0f green:118.0f/255.0f blue:111.0f/255.0f alpha:1.0]
+
 
 #endif /* HeaderConstants_h */
