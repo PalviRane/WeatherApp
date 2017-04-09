@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GooglePlaces/GooglePlaces.h>
 
-@interface WelcomeViewController : UIViewController
+@interface WelcomeViewController : UIViewController <GMSAutocompleteViewControllerDelegate>
 
 @end

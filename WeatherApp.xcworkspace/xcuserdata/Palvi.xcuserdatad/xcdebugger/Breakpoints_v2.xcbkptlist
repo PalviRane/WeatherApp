@@ -19,14 +19,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/SignInViewController.m"
-            timestampString = "513360709.309774"
+            filePath = "WeatherApp/WelcomeViewController.m"
+            timestampString = "513388509.114742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-facebookLoginPressed:"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-detectCurrentLocationAction:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[WelcomeViewController detectCurrentLocationAction:]"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Pallavi/Desktop/WeatherApp/WeatherApp/WelcomeViewController.m"
+                  timestampString = "513389155.872903"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "111">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__53-[WelcomeViewController detectCurrentLocationAction:]_block_invoke"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Pallavi/Desktop/WeatherApp/WeatherApp/WelcomeViewController.m"
+                  timestampString = "513389155.875334"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "122">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -35,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherApp/SignInViewController.m"
-            timestampString = "513360718.631306"
+            filePath = "WeatherApp/WelcomeViewController.m"
+            timestampString = "513388519.479902"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-facebookLoginPressed:"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-detectCurrentLocationAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

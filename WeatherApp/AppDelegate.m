@@ -27,6 +27,29 @@
     
     [GMSPlacesClient provideAPIKey:GOOGLE_API_KEY];
     
+    
+    NSString *cityName = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:CITY_NAME]];
+    
+    BOOL isUserLoggedIn = [[[NSUserDefaults standardUserDefaults] objectForKey:IS_USER_LOGGED_IN] boolValue];
+    
+    if (isUserLoggedIn)
+    {
+        UINavigationController *loginNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        
+        self.window.rootViewController = loginNavigationController;
+    }
+    else if (!cityName || cityName.length == 0)
+    {
+        UINavigationController *welcomeNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WelcomeNavigationController"];
+        
+        self.window.rootViewController = welcomeNavigationController;
+        
+    }
+    else
+    {
+    
+    }
+    
     return YES;
 }
 

@@ -7,10 +7,14 @@
 //
 
 #import "WelcomeViewController.h"
+#import "HeaderConstants.h"
 
 @interface WelcomeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
+@property(nonatomic,retain) CLLocationManager *locationManager;
+@property(nonatomic,retain) GMSPlacesClient *placesClient;
 
 @end
 
@@ -19,9 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Set Gif Image
-   
-    _backgroundImageView.image = [UIImage animatedImageNamed:@"Weather-" duration:11];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,14 +37,73 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//GOOLGE PLACES DELEGATES
+// Handle the user's selection.
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didAutocompleteWithPlace:(GMSPlace *)place {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // Do something with the selected place.
+    NSLog(@"Place name %@", place.name);
+    NSLog(@"Place address %@", place.formattedAddress);
+    NSLog(@"Place attributions %@", place.attributions.string);
+    
+    [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
-*/
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didFailAutocompleteWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // TODO: handle the error.
+    NSLog(@"Error: %@", [error description]);
+}
+
+// User canceled the operation.
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Turn the network activity indicator on and off again.
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+
+#pragma mark - Button Action
+
+- (IBAction)detectCurrentLocationAction:(id)sender
+{
+   [self.locationManager requestAlwaysAuthorization];
+    
+    
+    [_placesClient currentPlaceWithCallback:^(GMSPlaceLikelihoodList *likelihoodList, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Current Place error %@", [error localizedDescription]);
+            return;
+        }
+        
+        for (GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods) {
+            GMSPlace* place = likelihood.place;
+            NSLog(@"Current Place name %@ at likelihood %g", place.name, likelihood.likelihood);
+            NSLog(@"Current Place address %@", place.formattedAddress);
+            NSLog(@"Current Place attributions %@", place.attributions);
+            NSLog(@"Current PlaceID %@", place.placeID);
+        }
+        
+    }];
+}
+
+- (IBAction)selectCityAction:(id)sender
+{
+    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    acController.delegate = self;
+    acController.autocompleteFilter.type = kGMSPlacesAutocompleteTypeFilterCity;
+    [self presentViewController:acController animated:YES completion:nil];
+}
 
 @end

@@ -13,7 +13,9 @@
 
 #define IS_USER_LOGGED_IN @"isUserLoggedIn"
 #define IS_USER_CITY_SELECTED @"isUserCitySelected"
-
+#define CITY_NAME @"cityName"
+#define USER_NAME @"userName"
+#define USER_GENDER @"userGender"
 
 //Facebook Data Keys
 

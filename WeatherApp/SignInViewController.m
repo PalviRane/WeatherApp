@@ -8,6 +8,7 @@
 
 #import "SignInViewController.h"
 #import "SignInCollectionViewCell.h"
+#import "WelcomeViewController.h"
 
 #define COLLECTION_VIEW_CELL_IDENTIFIER @"SignInCellIdentifier"
 
@@ -46,8 +47,6 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = YES;
-    
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -156,8 +155,13 @@
                                          startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
                                              if (!error)
                                              {
-                                                 
                                                  NSLog(@"fetched user:%@", result);
+                                    
+                                                 [scrollingTimer invalidate];
+                                                 
+                                                 WelcomeViewController *welcomeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
+                                                 
+                                                 [self.navigationController pushViewController:welcomeViewController animated:YES];
                                                 
                                              }
                                              else
