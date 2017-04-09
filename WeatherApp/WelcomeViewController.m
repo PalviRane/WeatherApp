@@ -10,6 +10,7 @@
 #import "HeaderConstants.h"
 
 #import "WeatherViewController.h"
+#import "WelcomeDataController.h"
 
 @interface WelcomeViewController ()
 
@@ -18,12 +19,19 @@
 @property(nonatomic,retain) CLLocationManager *locationManager;
 @property(nonatomic,retain) GMSPlacesClient *placesClient;
 
+@property (nonatomic,retain) WelcomeDataController *dataCtrl;
+
 @end
 
 @implementation WelcomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (!_dataCtrl)
+    {
+        _dataCtrl = [[WelcomeDataController alloc] init];
+    }
     
 }
 
@@ -46,18 +54,32 @@
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
     // Do something with the selected place.
-    NSLog(@"Place name %@", place.name);
-    NSLog(@"Place address %@", place.formattedAddress);
-    NSLog(@"Place attributions %@", place.attributions.string);
+   // NSLog(@"Place name %@", place.name);
     
     [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [_dataCtrl getLocationKeyWithSuccess:^{
+        
+        WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
+        
+        [self.navigationController pushViewController:weatherViewController
+                                             animated:YES];
+        
+    } onFailure:^{
+        
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }];
     
-    WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
-    
-    [self.navigationController pushViewController:weatherViewController
-                                         animated:YES];
+   
 }
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController

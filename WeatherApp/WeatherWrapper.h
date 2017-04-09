@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Weather.h"
+#import "HeaderConstants.h"
+#import <AFNetworking.h>
 
 @interface WeatherWrapper : NSObject
 

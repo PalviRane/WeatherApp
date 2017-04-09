@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#import "WeatherWrapper.h"
+
+#import "Weather.h"
+
+@class WeatherWrapper;
+
 @interface WrapperManager : NSObject
+
+@property(strong,nonatomic) WeatherWrapper *weatherWrapper;
+
++(WrapperManager*) sharedInstance;
 
 @end

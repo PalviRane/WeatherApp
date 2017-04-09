@@ -49,5 +49,12 @@
 #define PURPLE_COLOR [UIColor colorWithRed:117.0f/255.0f green:96.0f/255.0f blue:139.0f/255.0f alpha:1.0]
 #define BROWN_COLOR [UIColor colorWithRed:137.0f/255.0f green:118.0f/255.0f blue:111.0f/255.0f alpha:1.0]
 
+//ALERT TITLES AND MESSAGES
+
+#define ERROR @"Error"
+#define SUCCESS @"Success"
+#define SOMETHING_WENT_WRONG @"Something went wrong."
+#define OK @"OK"
+#define CANCEL @"CANCEL"
 
 #endif /* HeaderConstants_h */

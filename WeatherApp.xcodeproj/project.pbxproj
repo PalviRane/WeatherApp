@@ -22,6 +22,8 @@
 		29A7E6041E9AE18D00A60AAF /* WrapperManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6031E9AE18D00A60AAF /* WrapperManager.m */; };
 		29A7E6081E9AE1AF00A60AAF /* WeatherWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6071E9AE1AF00A60AAF /* WeatherWrapper.m */; };
 		29A7E60C1E9AE29C00A60AAF /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E60B1E9AE29C00A60AAF /* Weather.m */; };
+		29A7E60F1E9AF59B00A60AAF /* WeatherDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E60E1E9AF59B00A60AAF /* WeatherDataController.m */; };
+		29A7E6121E9AF61F00A60AAF /* WelcomeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6111E9AF61F00A60AAF /* WelcomeDataController.m */; };
 		29D50B701E97D86700526640 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B6F1E97D86700526640 /* SignInViewController.m */; };
 		29D50B731E97D87D00526640 /* SignInDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B721E97D87D00526640 /* SignInDataController.m */; };
 		29D50B761E97D8B400526640 /* SignInCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B751E97D8B400526640 /* SignInCollectionViewCell.m */; };
@@ -75,6 +77,10 @@
 		29A7E6071E9AE1AF00A60AAF /* WeatherWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherWrapper.m; sourceTree = "<group>"; };
 		29A7E60A1E9AE29C00A60AAF /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
 		29A7E60B1E9AE29C00A60AAF /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		29A7E60D1E9AF59B00A60AAF /* WeatherDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDataController.h; sourceTree = "<group>"; };
+		29A7E60E1E9AF59B00A60AAF /* WeatherDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDataController.m; sourceTree = "<group>"; };
+		29A7E6101E9AF61F00A60AAF /* WelcomeDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeDataController.h; sourceTree = "<group>"; };
+		29A7E6111E9AF61F00A60AAF /* WelcomeDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeDataController.m; sourceTree = "<group>"; };
 		29D50B6E1E97D86700526640 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		29D50B6F1E97D86700526640 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		29D50B711E97D87D00526640 /* SignInDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInDataController.h; sourceTree = "<group>"; };
@@ -204,6 +210,8 @@
 		2968736E1E9A77CA00EDD121 /* Data Controller */ = {
 			isa = PBXGroup;
 			children = (
+				29A7E60D1E9AF59B00A60AAF /* WeatherDataController.h */,
+				29A7E60E1E9AF59B00A60AAF /* WeatherDataController.m */,
 			);
 			name = "Data Controller";
 			sourceTree = "<group>";
@@ -237,6 +245,8 @@
 		297A07121E98EDD900FCF812 /* DataController */ = {
 			isa = PBXGroup;
 			children = (
+				29A7E6101E9AF61F00A60AAF /* WelcomeDataController.h */,
+				29A7E6111E9AF61F00A60AAF /* WelcomeDataController.m */,
 			);
 			name = DataController;
 			sourceTree = "<group>";
@@ -527,11 +537,13 @@
 			files = (
 				29D50B761E97D8B400526640 /* SignInCollectionViewCell.m in Sources */,
 				2942E8291E96C974003CB273 /* AppDelegate.m in Sources */,
+				29A7E60F1E9AF59B00A60AAF /* WeatherDataController.m in Sources */,
 				296873721E9A77FD00EDD121 /* WeatherViewController.m in Sources */,
 				29D50B701E97D86700526640 /* SignInViewController.m in Sources */,
 				29A7E60C1E9AE29C00A60AAF /* Weather.m in Sources */,
 				2942E8261E96C974003CB273 /* main.m in Sources */,
 				29D50B731E97D87D00526640 /* SignInDataController.m in Sources */,
+				29A7E6121E9AF61F00A60AAF /* WelcomeDataController.m in Sources */,
 				297A07161E98EE1D00FCF812 /* WelcomeViewController.m in Sources */,
 				29A7E6041E9AE18D00A60AAF /* WrapperManager.m in Sources */,
 				29A7E6081E9AE1AF00A60AAF /* WeatherWrapper.m in Sources */,

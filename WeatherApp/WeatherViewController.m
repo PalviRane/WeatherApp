@@ -26,6 +26,8 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

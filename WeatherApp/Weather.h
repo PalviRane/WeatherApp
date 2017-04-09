@@ -10,4 +10,14 @@
 
 @interface Weather : NSObject
 
+@property(nonatomic,retain) NSString *weatherSummary;
+@property(nonatomic,retain) NSNumber *minTemprature;
+@property(nonatomic,retain) NSNumber *maxTemprature;
+@property(nonatomic,retain) NSString *tempratureUnit;
+@property(nonatomic,retain) NSString *dayText;
+@property(nonatomic,retain) NSNumber *dayIcon;
+@property(nonatomic,retain) NSString *nightText;
+@property(nonatomic,retain) NSNumber *nightIcon;
+
+
 @end
