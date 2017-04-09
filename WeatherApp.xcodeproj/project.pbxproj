@@ -14,6 +14,7 @@
 		2942E8341E96C974003CB273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2942E8321E96C974003CB273 /* LaunchScreen.storyboard */; };
 		2942E83F1E96C974003CB273 /* WeatherAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2942E83E1E96C974003CB273 /* WeatherAppTests.m */; };
 		2942E84A1E96C974003CB273 /* WeatherAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2942E8491E96C974003CB273 /* WeatherAppUITests.m */; };
+		296873721E9A77FD00EDD121 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296873711E9A77FD00EDD121 /* WeatherViewController.m */; };
 		297A07161E98EE1D00FCF812 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297A07151E98EE1D00FCF812 /* WelcomeViewController.m */; };
 		297A09E01E993F4000FCF812 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297A09DF1E993F4000FCF812 /* FBSDKLoginKit.framework */; };
 		297A09E31E99402800FCF812 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297A09E11E99402800FCF812 /* FBSDKCoreKit.framework */; };
@@ -57,6 +58,8 @@
 		2942E8451E96C974003CB273 /* WeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2942E8491E96C974003CB273 /* WeatherAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherAppUITests.m; sourceTree = "<group>"; };
 		2942E84B1E96C974003CB273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		296873701E9A77FD00EDD121 /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		296873711E9A77FD00EDD121 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
 		297A07141E98EE1D00FCF812 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		297A07151E98EE1D00FCF812 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		297A09DF1E993F4000FCF812 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 				2942E8271E96C974003CB273 /* AppDelegate.h */,
 				2942E8281E96C974003CB273 /* AppDelegate.m */,
 				297A09E51E9984EF00FCF812 /* HeaderConstants.h */,
+				2968736C1E9A77BA00EDD121 /* Weather Display */,
 				297A09DE1E993F2600FCF812 /* Frameworks */,
 				297A07101E98EDC400FCF812 /* Welcome */,
 				29D50B6A1E97D80200526640 /* Sign In */,
@@ -167,6 +171,39 @@
 				2942E84B1E96C974003CB273 /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		2968736C1E9A77BA00EDD121 /* Weather Display */ = {
+			isa = PBXGroup;
+			children = (
+				2968736F1E9A77D400EDD121 /* View Controller */,
+				2968736E1E9A77CA00EDD121 /* Data Controller */,
+				2968736D1E9A77C400EDD121 /* View */,
+			);
+			name = "Weather Display";
+			sourceTree = "<group>";
+		};
+		2968736D1E9A77C400EDD121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2968736E1E9A77CA00EDD121 /* Data Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Controller";
+			sourceTree = "<group>";
+		};
+		2968736F1E9A77D400EDD121 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				296873701E9A77FD00EDD121 /* WeatherViewController.h */,
+				296873711E9A77FD00EDD121 /* WeatherViewController.m */,
+			);
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 		297A07101E98EDC400FCF812 /* Welcome */ = {
@@ -459,6 +496,7 @@
 			files = (
 				29D50B761E97D8B400526640 /* SignInCollectionViewCell.m in Sources */,
 				2942E8291E96C974003CB273 /* AppDelegate.m in Sources */,
+				296873721E9A77FD00EDD121 /* WeatherViewController.m in Sources */,
 				29D50B701E97D86700526640 /* SignInViewController.m in Sources */,
 				2942E8261E96C974003CB273 /* main.m in Sources */,
 				29D50B731E97D87D00526640 /* SignInDataController.m in Sources */,
