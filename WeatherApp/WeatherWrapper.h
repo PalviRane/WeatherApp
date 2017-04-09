@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "Weather.h"
 #import "HeaderConstants.h"
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface WeatherWrapper : NSObject
 
 -(void)getLocationKeyUsingCityName:(NSString *)cityName onSuccess:(void (^) (NSString *))onSuccess onFailure:(void (^) (void))onFailure;
 
 -(void)getCityWeatherUsingLocationKey:(NSString *)locationKey onSuccess:(void (^) (Weather *))onSuccess onFailure:(void (^) (void))onFailure;
+
+-(void)saveUserImageInDocumentsLibrary:(UIImage *)userImage;
+
+-(UIImage *)getUserImage;
 
 @end

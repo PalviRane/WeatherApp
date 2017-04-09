@@ -7,6 +7,7 @@
 //
 
 #import "WeatherWrapper.h"
+#import "HeaderConstants.h"
 
 @implementation WeatherWrapper
 
@@ -160,7 +161,7 @@
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"profileImage.png"]; //Add the file name
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:USER_PIC]; //Add the file name
     [pngData writeToFile:filePath atomically:YES]; //Write the file
     
 }
@@ -169,7 +170,7 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0]; //Get the docs directory
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"profileImage.png"];
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:USER_PIC];
     
     NSData *pngData = [NSData dataWithContentsOfFile:filePath];
     UIImage *userImage = [UIImage imageWithData:pngData];
@@ -179,7 +180,7 @@
     }
     else
     {
-        return [UIImage imageNamed:@"User"];
+        return [UIImage imageNamed:@"users"];
     }
     
 }

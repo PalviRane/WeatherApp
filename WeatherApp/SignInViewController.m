@@ -9,6 +9,8 @@
 #import "SignInViewController.h"
 #import "SignInCollectionViewCell.h"
 #import "WelcomeViewController.h"
+#import "HeaderConstants.h"
+#import "WrapperManager.h"
 
 #define COLLECTION_VIEW_CELL_IDENTIFIER @"SignInCellIdentifier"
 
@@ -22,6 +24,9 @@
 //UI Elements
 
 @property (weak, nonatomic) IBOutlet UICollectionView *signInCollectionView;
+
+@property (retain, nonatomic) UIView *transperentloadingView;
+
 
 //DataController
 
@@ -83,7 +88,8 @@
 {
     [_signInCollectionView reloadData];
     
-    scrollingTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    if(!scrollingTimer)
+        scrollingTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +136,8 @@
 
 - (IBAction)facebookLoginPressed:(id)sender
 {
+    [self addLoadingView];
+    
     FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
     
     [login logInWithReadPermissions: @[@"email", @"public_profile"]
@@ -138,11 +146,27 @@
                                 if (error)
                                 {
                                     NSLog(@"Process error");
+                                    [self removeloadingView];
+                                    
+                                    UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+                                    
+                                    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                                          handler:^(UIAlertAction * action) {}];
+                                    [alert addAction:defaultAction];
+                                    [self presentViewController:alert animated:YES completion:nil];
 
                                 }
                                 else if (result.isCancelled)
                                 {
                                     NSLog(@"Cancelled");
+                                    [self removeloadingView];
+                                    
+                                    UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+                                    
+                                    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                                          handler:^(UIAlertAction * action) {}];
+                                    [alert addAction:defaultAction];
+                                    [self presentViewController:alert animated:YES completion:nil];
 
                                 } else
                                 {
@@ -156,8 +180,15 @@
                                              if (!error)
                                              {
                                                  NSLog(@"fetched user:%@", result);
+                                                 
+                                                 [self removeloadingView];
                                     
                                                  [scrollingTimer invalidate];
+                                                 
+                                                 [self saveUserDataToUserDefaultsWithResult:result];
+                                                 
+//                                                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:IS_USER_LOGGED_IN];
+//                                                 [[NSUserDefaults standardUserDefaults] synchronize];
                                                  
                                                  WelcomeViewController *welcomeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
                                                  
@@ -168,7 +199,14 @@
                                              {
                                                  NSLog(@"fb Failure");
                                                  
+                                                 [self removeloadingView];
                                                  
+                                                 UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+                                                 
+                                                 UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                                                       handler:^(UIAlertAction * action) {}];
+                                                 [alert addAction:defaultAction];
+                                                 [self presentViewController:alert animated:YES completion:nil];
                                              }
                                          }];
                                         
@@ -177,6 +215,64 @@
                                 }
                             }];
 
+}
+
+-(void)saveUserDataToUserDefaultsWithResult:(id)result
+{
+    if ([result valueForKey:@"name"])
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:[result valueForKey:@"name"] forKey:USER_NAME];
+    }
+    
+    if ([result valueForKey:@"email"])
+    {
+        [[NSUserDefaults standardUserDefaults] setValue:[result valueForKey:@"email"] forKey:USER_EMAIL];
+    }
+    
+    if ([result valueForKey:@"gender"])
+    {
+         [[NSUserDefaults standardUserDefaults] setValue:[result valueForKey:@"gender"] forKey:USER_GENDER];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    if ([result valueForKey:@"picture"])
+    {
+       
+        NSURL *url = [[NSURL alloc] initWithString: [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"]];
+        
+        [[WrapperManager sharedInstance].weatherWrapper saveUserImageInDocumentsLibrary:[UIImage imageWithData: [NSData dataWithContentsOfURL: url]]];
+
+    }
+}
+
+
+#pragma mark - Loading View
+
+-(void)addLoadingView{
+    
+    if(!_transperentloadingView){
+        
+        _transperentloadingView =[[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+        _transperentloadingView.backgroundColor=[UIColor whiteColor];
+        _transperentloadingView.alpha=1;
+        _transperentloadingView.center = self.view.center;
+        
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        indicator.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        [indicator startAnimating];
+        [indicator setCenter:_transperentloadingView.center];
+        [indicator setColor:[UIColor blackColor]];
+        [_transperentloadingView addSubview:indicator];
+    }
+    
+    [self.view addSubview:_transperentloadingView];
+}
+
+-(void)removeloadingView{
+    
+    [_transperentloadingView removeFromSuperview];
 }
 
 

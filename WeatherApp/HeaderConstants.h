@@ -24,12 +24,14 @@
 #define IS_USER_LOGGED_IN @"isUserLoggedIn"
 #define IS_USER_CITY_SELECTED @"isUserCitySelected"
 #define CITY_NAME @"cityName"
-#define USER_NAME @"userName"
-#define USER_GENDER @"userGender"
 #define CURRENT_LOCATION_KEY @"currentLocationKey"
 
 //Facebook Data Keys
 
+#define USER_NAME @"weatherUserName"
+#define USER_GENDER @"weatherUserGender"
+#define USER_EMAIL @"weatherUserEmail"
+#define USER_PIC @"profileImage.png"
 
 //Google
 #define GOOGLE_API_KEY @"AIzaSyBKUiYPS5pltDza67dlAK4JTyJ-493Axoo"
