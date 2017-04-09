@@ -19,6 +19,9 @@
 		297A09E01E993F4000FCF812 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297A09DF1E993F4000FCF812 /* FBSDKLoginKit.framework */; };
 		297A09E31E99402800FCF812 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297A09E11E99402800FCF812 /* FBSDKCoreKit.framework */; };
 		297A09E41E99402800FCF812 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 297A09E21E99402800FCF812 /* FBSDKShareKit.framework */; };
+		29A7E6041E9AE18D00A60AAF /* WrapperManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6031E9AE18D00A60AAF /* WrapperManager.m */; };
+		29A7E6081E9AE1AF00A60AAF /* WeatherWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6071E9AE1AF00A60AAF /* WeatherWrapper.m */; };
+		29A7E60C1E9AE29C00A60AAF /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E60B1E9AE29C00A60AAF /* Weather.m */; };
 		29D50B701E97D86700526640 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B6F1E97D86700526640 /* SignInViewController.m */; };
 		29D50B731E97D87D00526640 /* SignInDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B721E97D87D00526640 /* SignInDataController.m */; };
 		29D50B761E97D8B400526640 /* SignInCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B751E97D8B400526640 /* SignInCollectionViewCell.m */; };
@@ -66,6 +69,12 @@
 		297A09E11E99402800FCF812 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		297A09E21E99402800FCF812 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		297A09E51E9984EF00FCF812 /* HeaderConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderConstants.h; sourceTree = "<group>"; };
+		29A7E6021E9AE18D00A60AAF /* WrapperManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapperManager.h; sourceTree = "<group>"; };
+		29A7E6031E9AE18D00A60AAF /* WrapperManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrapperManager.m; sourceTree = "<group>"; };
+		29A7E6061E9AE1AF00A60AAF /* WeatherWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherWrapper.h; sourceTree = "<group>"; };
+		29A7E6071E9AE1AF00A60AAF /* WeatherWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherWrapper.m; sourceTree = "<group>"; };
+		29A7E60A1E9AE29C00A60AAF /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		29A7E60B1E9AE29C00A60AAF /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
 		29D50B6E1E97D86700526640 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		29D50B6F1E97D86700526640 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		29D50B711E97D87D00526640 /* SignInDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInDataController.h; sourceTree = "<group>"; };
@@ -133,14 +142,16 @@
 				2942E8271E96C974003CB273 /* AppDelegate.h */,
 				2942E8281E96C974003CB273 /* AppDelegate.m */,
 				297A09E51E9984EF00FCF812 /* HeaderConstants.h */,
+				29A7E6091E9AE28800A60AAF /* Model */,
+				29A7E6051E9AE19700A60AAF /* Wrapper */,
 				2968736C1E9A77BA00EDD121 /* Weather Display */,
-				297A09DE1E993F2600FCF812 /* Frameworks */,
 				297A07101E98EDC400FCF812 /* Welcome */,
 				29D50B6A1E97D80200526640 /* Sign In */,
 				2942E82D1E96C974003CB273 /* Main.storyboard */,
 				2942E8301E96C974003CB273 /* Assets.xcassets */,
 				2942E8321E96C974003CB273 /* LaunchScreen.storyboard */,
 				2942E8351E96C974003CB273 /* Info.plist */,
+				297A09DE1E993F2600FCF812 /* Frameworks */,
 				297A07171E98F49C00FCF812 /* Weather GIF */,
 				2942E8241E96C974003CB273 /* Supporting Files */,
 			);
@@ -254,6 +265,26 @@
 				297A09DF1E993F4000FCF812 /* FBSDKLoginKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29A7E6051E9AE19700A60AAF /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				29A7E6021E9AE18D00A60AAF /* WrapperManager.h */,
+				29A7E6031E9AE18D00A60AAF /* WrapperManager.m */,
+				29A7E6061E9AE1AF00A60AAF /* WeatherWrapper.h */,
+				29A7E6071E9AE1AF00A60AAF /* WeatherWrapper.m */,
+			);
+			name = Wrapper;
+			sourceTree = "<group>";
+		};
+		29A7E6091E9AE28800A60AAF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29A7E60A1E9AE29C00A60AAF /* Weather.h */,
+				29A7E60B1E9AE29C00A60AAF /* Weather.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		29D50B6A1E97D80200526640 /* Sign In */ = {
@@ -498,9 +529,12 @@
 				2942E8291E96C974003CB273 /* AppDelegate.m in Sources */,
 				296873721E9A77FD00EDD121 /* WeatherViewController.m in Sources */,
 				29D50B701E97D86700526640 /* SignInViewController.m in Sources */,
+				29A7E60C1E9AE29C00A60AAF /* Weather.m in Sources */,
 				2942E8261E96C974003CB273 /* main.m in Sources */,
 				29D50B731E97D87D00526640 /* SignInDataController.m in Sources */,
 				297A07161E98EE1D00FCF812 /* WelcomeViewController.m in Sources */,
+				29A7E6041E9AE18D00A60AAF /* WrapperManager.m in Sources */,
+				29A7E6081E9AE1AF00A60AAF /* WeatherWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

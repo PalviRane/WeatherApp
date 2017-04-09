@@ -9,6 +9,8 @@
 #import "WelcomeViewController.h"
 #import "HeaderConstants.h"
 
+#import "WeatherViewController.h"
+
 @interface WelcomeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
@@ -30,6 +32,7 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +53,11 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     
     [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
+    
+    [self.navigationController pushViewController:weatherViewController
+                                         animated:YES];
 }
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController
@@ -93,6 +101,11 @@ didFailAutocompleteWithError:(NSError *)error {
             NSLog(@"Current Place address %@", place.formattedAddress);
             NSLog(@"Current Place attributions %@", place.attributions);
             NSLog(@"Current PlaceID %@", place.placeID);
+            
+            WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
+            
+            [self.navigationController pushViewController:weatherViewController
+                                                 animated:YES];
         }
         
     }];
