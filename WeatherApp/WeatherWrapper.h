@@ -15,7 +15,7 @@
 
 -(void)getLocationKeyUsingCityName:(NSString *)cityName onSuccess:(void (^) (NSString *locationKey))onSuccess onFailure:(void (^) (void))onFailure;
 
--(void)getCityWeatherUsingLocationKey:(NSString *)locationKey onSuccess:(void (^) (Weather *))onSuccess onFailure:(void (^) (void))onFailure;
+-(void)getCityWeatherUsingLocationKey:(NSString *)locationKey onSuccess:(void (^) (Weather *weather))onSuccess onFailure:(void (^) (void))onFailure;
 
 -(void)saveUserImageInDocumentsLibrary:(UIImage *)userImage;
 

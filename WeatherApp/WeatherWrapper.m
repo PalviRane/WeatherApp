@@ -73,7 +73,7 @@
 
 
 
--(void)getCityWeatherUsingLocationKey:(NSString *)locationKey onSuccess:(void (^) (Weather *))onSuccess onFailure:(void (^) (void))onFailure
+-(void)getCityWeatherUsingLocationKey:(NSString *)locationKey onSuccess:(void (^) (Weather *weather))onSuccess onFailure:(void (^) (void))onFailure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@%@",BASE_URL,DAILY_WEATHER_URL,locationKey];
     
@@ -129,28 +129,42 @@
     if ([responseDictionary valueForKey:@"Headline"])
     {
         weather.weatherSummary = [[responseDictionary valueForKey:@"Headline"] valueForKey:@"Text"];
+        
     }
     
     if ([responseDictionary valueForKey:@"DailyForecasts"])
     {
-        weather.minTemprature = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Temperature"] valueForKey:@"Minimum"] valueForKey:@"Value"];
+        NSNumber *minimumTempF = [[[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Temperature"] valueForKey:@"Minimum"] valueForKey:@"Value"] firstObject];
         
-        weather.maxTemprature = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Temperature"] valueForKey:@"Maximum"] valueForKey:@"Value"];
+        float min = (minimumTempF.floatValue - 32) * 0.5556;
         
-        weather.tempratureUnit = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Temperature"] valueForKey:@"Maximum"] valueForKey:@"Unit"];
+        weather.minTemprature = [NSNumber numberWithFloat:min];
+        
+        NSNumber *maximumTempF = [[[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Temperature"] valueForKey:@"Maximum"] valueForKey:@"Value"] firstObject];
+        
+        float max = (maximumTempF.floatValue - 32) * 0.5556;
+        
+        weather.maxTemprature = [NSNumber numberWithFloat:max];
+        
+        weather.tempratureUnit = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Temperature"] valueForKey:@"Maximum"] valueForKey:@"Unit"] ;
+        
+        if ([[responseDictionary valueForKey:@"DailyForecasts"]valueForKey:@"Day"])
+        {
+            weather.dayIcon = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Day"] valueForKey:@"Icon"] firstObject];
+            
+            weather.dayText = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Day"] valueForKey:@"IconPhrase"] firstObject];
+        }
+        
+        if ([[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Night"])
+        {
+            weather.nightIcon = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Night"] valueForKey:@"Icon"] firstObject];
+            
+            weather.nightText = [[[[responseDictionary valueForKey:@"DailyForecasts"] valueForKey:@"Night"] valueForKey:@"IconPhrase"] firstObject];
+        }
+        
     }
     
-    if ([responseDictionary valueForKey:@"Day"])
-    {
-        weather.dayIcon = [[responseDictionary valueForKey:@"Day"] valueForKey:@"Icon"];
-        weather.dayText = [[responseDictionary valueForKey:@"Day"] valueForKey:@"IconPhrase"];
-    }
-    
-    if ([responseDictionary valueForKey:@"Night"])
-    {
-        weather.nightIcon = [[responseDictionary valueForKey:@"Night"] valueForKey:@"Icon"];
-        weather.nightText = [[responseDictionary valueForKey:@"Day"] valueForKey:@"IconPhrase"];
-    }
+  
     
     return weather;
 }
