@@ -20,7 +20,7 @@
     return self;
 }
 
--(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure
+-(void)getCurrentLocationWeatherWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure
 {
     [[WrapperManager sharedInstance].weatherWrapper getCityWeatherUsingLocationKey:[[NSUserDefaults standardUserDefaults] valueForKey:CURRENT_LOCATION_KEY] onSuccess:^(Weather *weather) {
         
@@ -32,5 +32,20 @@
         onFailure();
     }];
 }
+
+-(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure
+{
+    [[WrapperManager sharedInstance].weatherWrapper getLocationKeyUsingCityName:[[NSUserDefaults standardUserDefaults] valueForKey:CITY_NAME] onSuccess:^(NSString *locationKey) {
+        
+        [[NSUserDefaults standardUserDefaults] setValue:locationKey forKey:CURRENT_LOCATION_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        onSuccess();
+    } onFailure:^{
+        
+        onFailure();
+    }];
+}
+
 
 @end

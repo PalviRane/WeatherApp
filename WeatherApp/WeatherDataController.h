@@ -14,6 +14,8 @@
 
 @property(nonatomic,retain) Weather *weather;
 
--(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure;
+-(void)getCurrentLocationWeatherWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure;
+-(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure
+;
 
 @end

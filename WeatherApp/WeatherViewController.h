@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WeatherDataController.h"
+#import <GooglePlaces/GooglePlaces.h>
 
-@interface WeatherViewController : UIViewController
+@interface WeatherViewController : UIViewController <UIActionSheetDelegate, GMSAutocompleteViewControllerDelegate>
 
 @end

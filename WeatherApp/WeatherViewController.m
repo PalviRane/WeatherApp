@@ -29,6 +29,10 @@
 @property (nonatomic,retain) WeatherDataController *dataCtrl;
 
 
+@property(nonatomic,retain) CLLocationManager *locationManager;
+@property(nonatomic,retain) GMSPlacesClient *placesClient;
+
+
 @end
 
 @implementation WeatherViewController
@@ -52,9 +56,15 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
     
+    [self getWeatherDataForSelectedCity];
+    
+}
+
+-(void)getWeatherDataForSelectedCity
+{
     [self addLoadingView];
     
-    [_dataCtrl getLocationKeyWithSuccess:^{
+    [_dataCtrl getCurrentLocationWeatherWithSuccess:^{
         
         [self removeloadingView];
         
@@ -72,7 +82,6 @@
         [self presentViewController:alert animated:YES completion:nil];
         
     }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -164,6 +173,135 @@
     
 }
 
+#pragma mark - Location Methods
+
+-(void)detectCurrentLocationSelected
+{
+    [self.locationManager requestAlwaysAuthorization];
+    
+    [self addLoadingView];
+    
+    [_placesClient currentPlaceWithCallback:^(GMSPlaceLikelihoodList *likelihoodList, NSError *error) {
+        if (error != nil) {
+            // NSLog(@"Current Place error %@", [error localizedDescription]);
+            
+            [self removeloadingView];
+            
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+            return;
+        }
+        
+        for (GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods) {
+            GMSPlace* place = likelihood.place;
+            //NSLog(@"Current Place name %@ at likelihood %g", place.name, likelihood.likelihood);
+            
+            [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [_dataCtrl getLocationKeyWithSuccess:^{
+                
+                [self removeloadingView];
+                [self getWeatherDataForSelectedCity];
+                
+            } onFailure:^{
+                
+                [self removeloadingView];
+                
+                UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {}];
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }];
+        }
+        
+    }];
+}
+
+// Handle the user's selection.
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didAutocompleteWithPlace:(GMSPlace *)place {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self addLoadingView];
+    
+    // Do something with the selected place.
+    // NSLog(@"Place name %@", place.name);
+    
+    [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [_dataCtrl getLocationKeyWithSuccess:^{
+        
+        [self removeloadingView];
+        
+      [self getWeatherDataForSelectedCity];
+        
+    } onFailure:^{
+        [self removeloadingView];
+        
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }];
+    
+    
+}
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didFailAutocompleteWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // TODO: handle the error.
+    //  NSLog(@"Error: %@", [error description]);
+    
+    [self removeloadingView];
+    
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+// User canceled the operation.
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Turn the network activity indicator on and off again.
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+
+-(void)searchCitySelected
+{
+    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    acController.delegate = self;
+    acController.autocompleteFilter.type = kGMSPlacesAutocompleteTypeFilterCity;
+    [self presentViewController:acController animated:YES completion:nil];
+}
+
 #pragma mark - Loading View
 
 -(void)addLoadingView{
@@ -206,5 +344,35 @@
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
+
+- (IBAction)locationButtonAction:(id)sender
+{
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Hi %@",[[NSUserDefaults standardUserDefaults] valueForKey:USER_NAME]] message:@"Would you like to change your city?" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    actionSheet.view.tintColor = DARK_GRAY_COLOR;
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:CANCEL style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Detect current location." style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [self detectCurrentLocationSelected];
+      
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Search City." style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [self searchCitySelected];
+        
+    }]];
+    
+    // Present action sheet.
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (IBAction)historyButtonAction:(id)sender
+{
+    
+}
 
 @end

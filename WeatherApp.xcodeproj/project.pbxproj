@@ -150,9 +150,10 @@
 				297A09E51E9984EF00FCF812 /* HeaderConstants.h */,
 				29A7E6091E9AE28800A60AAF /* Model */,
 				29A7E6051E9AE19700A60AAF /* Wrapper */,
-				2968736C1E9A77BA00EDD121 /* Weather Display */,
-				297A07101E98EDC400FCF812 /* Welcome */,
 				29D50B6A1E97D80200526640 /* Sign In */,
+				297A07101E98EDC400FCF812 /* Welcome */,
+				2968736C1E9A77BA00EDD121 /* Weather Display */,
+				29A7E6131E9C423100A60AAF /* History */,
 				2942E82D1E96C974003CB273 /* Main.storyboard */,
 				2942E8301E96C974003CB273 /* Assets.xcassets */,
 				2942E8321E96C974003CB273 /* LaunchScreen.storyboard */,
@@ -295,6 +296,21 @@
 				29A7E60B1E9AE29C00A60AAF /* Weather.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		29A7E6131E9C423100A60AAF /* History */ = {
+			isa = PBXGroup;
+			children = (
+				29A7E6141E9C425500A60AAF /* Views */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		29A7E6141E9C425500A60AAF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		29D50B6A1E97D80200526640 /* Sign In */ = {

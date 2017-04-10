@@ -72,7 +72,7 @@
 }
 
 
-//GOOLGE PLACES DELEGATES
+#pragma mark - GOOLGE PLACES DELEGATES
 // Handle the user's selection.
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didAutocompleteWithPlace:(GMSPlace *)place {
