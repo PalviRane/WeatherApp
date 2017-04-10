@@ -187,8 +187,8 @@
                                                  
                                                  [self saveUserDataToUserDefaultsWithResult:result];
                                                  
-//                                                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:IS_USER_LOGGED_IN];
-//                                                 [[NSUserDefaults standardUserDefaults] synchronize];
+                                                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:IS_USER_LOGGED_IN];
+                                                 [[NSUserDefaults standardUserDefaults] synchronize];
                                                  
                                                  WelcomeViewController *welcomeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WelcomeViewController"];
                                                  

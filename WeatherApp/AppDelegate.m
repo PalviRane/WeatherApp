@@ -32,7 +32,7 @@
     
     BOOL isUserLoggedIn = [[[NSUserDefaults standardUserDefaults] objectForKey:IS_USER_LOGGED_IN] boolValue];
     
-    if (isUserLoggedIn)
+    if (!isUserLoggedIn)
     {
         UINavigationController *loginNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
         
@@ -47,7 +47,9 @@
     }
     else
     {
-    
+        UINavigationController *weatherNavigationController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherNavigationController"];
+        
+        self.window.rootViewController = weatherNavigationController;
     }
     
     return YES;
