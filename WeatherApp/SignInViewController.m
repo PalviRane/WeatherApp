@@ -254,8 +254,8 @@
     if(!_transperentloadingView){
         
         _transperentloadingView =[[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
-        _transperentloadingView.backgroundColor=[UIColor whiteColor];
-        _transperentloadingView.alpha=1;
+        _transperentloadingView.backgroundColor=[UIColor grayColor];
+        _transperentloadingView.alpha=0.5;
         _transperentloadingView.center = self.view.center;
         
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];

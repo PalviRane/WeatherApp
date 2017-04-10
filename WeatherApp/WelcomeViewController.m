@@ -8,13 +8,20 @@
 
 #import "WelcomeViewController.h"
 #import "HeaderConstants.h"
+#import "WrapperManager.h"
 
 #import "WeatherViewController.h"
 #import "WelcomeDataController.h"
 
 @interface WelcomeViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+//UI Elements
+
+@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+
+@property (retain, nonatomic) UIView *transperentloadingView;
 
 @property(nonatomic,retain) CLLocationManager *locationManager;
 @property(nonatomic,retain) GMSPlacesClient *placesClient;
@@ -41,11 +48,27 @@
     
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
+    
+    [self setupView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//Setup View
+
+-(void)setupView
+{
+     [self.view layoutIfNeeded];
+    
+    _userImageView.layer.cornerRadius = _userImageView.frame.size.height/2;
+    _userImageView.clipsToBounds = YES;
+    
+    _userImageView.image = [[WrapperManager sharedInstance].weatherWrapper getUserImage];
+    
+    _userNameLabel.text = [NSString stringWithFormat:@"Hi %@.", [[NSUserDefaults standardUserDefaults] valueForKey:USER_NAME]];
 }
 
 
@@ -55,6 +78,8 @@
 didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
     
+     [self addLoadingView];
+    
     // Do something with the selected place.
    // NSLog(@"Place name %@", place.name);
     
@@ -63,12 +88,15 @@ didAutocompleteWithPlace:(GMSPlace *)place {
 
     [_dataCtrl getLocationKeyWithSuccess:^{
         
+        [self removeloadingView];
+        
         WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
         
         [self.navigationController pushViewController:weatherViewController
                                              animated:YES];
         
     } onFailure:^{
+        [self removeloadingView];
         
         UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
         
@@ -86,21 +114,61 @@ didAutocompleteWithPlace:(GMSPlace *)place {
 didFailAutocompleteWithError:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:nil];
     // TODO: handle the error.
-    NSLog(@"Error: %@", [error description]);
+  //  NSLog(@"Error: %@", [error description]);
+    
+    [self removeloadingView];
+    
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 // User canceled the operation.
-- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController
+{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Turn the network activity indicator on and off again.
-- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController
+{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
-- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+- (void)didUpdateAutocompletePredictions:(GMSAutocompleteViewController *)viewController
+{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+#pragma mark - Loading View
+
+-(void)addLoadingView{
+    
+    if(!_transperentloadingView){
+        
+        _transperentloadingView =[[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+        _transperentloadingView.backgroundColor=[UIColor grayColor];
+        _transperentloadingView.alpha=0.5;
+        _transperentloadingView.center = self.view.center;
+        
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        indicator.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        [indicator startAnimating];
+        [indicator setCenter:_transperentloadingView.center];
+        [indicator setColor:[UIColor blackColor]];
+        [_transperentloadingView addSubview:indicator];
+    }
+    
+    [self.view addSubview:_transperentloadingView];
+}
+
+-(void)removeloadingView{
+    
+    [_transperentloadingView removeFromSuperview];
 }
 
 
@@ -110,24 +178,52 @@ didFailAutocompleteWithError:(NSError *)error {
 {
    [self.locationManager requestAlwaysAuthorization];
     
+    [self addLoadingView];
     
     [_placesClient currentPlaceWithCallback:^(GMSPlaceLikelihoodList *likelihoodList, NSError *error) {
         if (error != nil) {
-            NSLog(@"Current Place error %@", [error localizedDescription]);
+           // NSLog(@"Current Place error %@", [error localizedDescription]);
+            
+            [self removeloadingView];
+            
+            UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
             return;
         }
         
         for (GMSPlaceLikelihood *likelihood in likelihoodList.likelihoods) {
             GMSPlace* place = likelihood.place;
-            NSLog(@"Current Place name %@ at likelihood %g", place.name, likelihood.likelihood);
-            NSLog(@"Current Place address %@", place.formattedAddress);
-            NSLog(@"Current Place attributions %@", place.attributions);
-            NSLog(@"Current PlaceID %@", place.placeID);
+            //NSLog(@"Current Place name %@ at likelihood %g", place.name, likelihood.likelihood);
             
-            WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
+            [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
-            [self.navigationController pushViewController:weatherViewController
-                                                 animated:YES];
+            [_dataCtrl getLocationKeyWithSuccess:^{
+                
+                [self removeloadingView];
+                
+                WeatherViewController *weatherViewController= [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WeatherViewController"];
+                
+                [self.navigationController pushViewController:weatherViewController
+                                                     animated:YES];
+                
+            } onFailure:^{
+                
+                 [self removeloadingView];
+                
+                UIAlertController *alert=[UIAlertController alertControllerWithTitle:ERROR message:SOMETHING_WENT_WRONG preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:OK style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {}];
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                
+            }];
         }
         
     }];

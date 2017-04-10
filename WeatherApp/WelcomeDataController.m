@@ -8,8 +8,23 @@
 
 #import "WelcomeDataController.h"
 #import "WrapperManager.h"
+#import "HeaderConstants.h"
 
 @implementation WelcomeDataController
+
+-(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure
+{
+    [[WrapperManager sharedInstance].weatherWrapper getLocationKeyUsingCityName:[[NSUserDefaults standardUserDefaults] valueForKey:CITY_NAME] onSuccess:^(NSString *locationKey) {
+        
+        [[NSUserDefaults standardUserDefaults] setValue:locationKey forKey:CURRENT_LOCATION_KEY];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        onSuccess();
+    } onFailure:^{
+        
+        onFailure();
+    }];
+}
 
 
 @end

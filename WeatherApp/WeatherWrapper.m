@@ -11,7 +11,7 @@
 
 @implementation WeatherWrapper
 
--(void)getLocationKeyUsingCityName:(NSString *)cityName onSuccess:(void (^) (NSString *))onSuccess onFailure:(void (^) (void))onFailure
+-(void)getLocationKeyUsingCityName:(NSString *)cityName onSuccess:(void (^) (NSString *locationKey))onSuccess onFailure:(void (^) (void))onFailure
 {
     NSString *urlStr = [NSString stringWithFormat:@"%@%@",BASE_URL,GET_LOCATION_KEY_URL];
     
@@ -31,7 +31,7 @@
         
         if (operation.response.statusCode == 200 || operation.response.statusCode == 201){
             
-            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+            NSDictionary *responseDict = [[NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil] firstObject];
             
             NSString *locationKey = [strongSelf getLocationKeyFromDictionary:responseDict];
             
@@ -68,7 +68,7 @@
     {
         locattionKeyString = [responseDictionary valueForKey:@"Key"];
     }
-    return locattionKeyString;
+    return [NSString stringWithString:locattionKeyString];
 }
 
 

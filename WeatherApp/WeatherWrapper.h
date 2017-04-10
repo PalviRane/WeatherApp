@@ -13,7 +13,7 @@
 
 @interface WeatherWrapper : NSObject
 
--(void)getLocationKeyUsingCityName:(NSString *)cityName onSuccess:(void (^) (NSString *))onSuccess onFailure:(void (^) (void))onFailure;
+-(void)getLocationKeyUsingCityName:(NSString *)cityName onSuccess:(void (^) (NSString *locationKey))onSuccess onFailure:(void (^) (void))onFailure;
 
 -(void)getCityWeatherUsingLocationKey:(NSString *)locationKey onSuccess:(void (^) (Weather *))onSuccess onFailure:(void (^) (void))onFailure;
 
