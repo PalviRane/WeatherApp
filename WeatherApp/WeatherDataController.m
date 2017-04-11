@@ -47,5 +47,31 @@
     }];
 }
 
+-(void)modifyHistoryArrayWithCityName:(NSString *)cityName
+{
+    NSMutableArray *historyArray;
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:CITY_HISTORY_ARRAY])
+    {
+         historyArray = [[[NSUserDefaults standardUserDefaults] objectForKey:CITY_HISTORY_ARRAY] mutableCopy];
+        
+        BOOL isCityNamePresent = [historyArray containsObject: cityName];
+        
+        if (!isCityNamePresent)
+        {
+            [historyArray addObject:cityName];
+        }
+    }
+   else
+   {
+       historyArray = [[NSMutableArray alloc] init];
+       [historyArray addObject:cityName];
+   }
+    
+    
+    
+    [[NSUserDefaults standardUserDefaults] setObject:historyArray forKey:CITY_HISTORY_ARRAY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 @end

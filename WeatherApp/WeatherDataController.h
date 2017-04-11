@@ -18,4 +18,6 @@
 -(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure
 ;
 
+-(void)modifyHistoryArrayWithCityName:(NSString *)cityName;
+
 @end

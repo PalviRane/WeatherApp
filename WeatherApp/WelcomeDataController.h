@@ -12,5 +12,7 @@
 
 -(void)getLocationKeyWithSuccess:(void(^)(void)) onSuccess onFailure:(void (^)(void)) onFailure;
 
+-(void)createCityArrayToSavHistoryWithCityName:(NSString *)cityName;
+
 
 @end

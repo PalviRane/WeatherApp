@@ -76,15 +76,20 @@
 // Handle the user's selection.
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didAutocompleteWithPlace:(GMSPlace *)place {
-    [self dismissViewControllerAnimated:YES completion:nil];
     
-     [self addLoadingView];
+    [self addLoadingView];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     // Do something with the selected place.
    // NSLog(@"Place name %@", place.name);
     
+    //Save City Name in USerDefaults
     [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    //Add CityName in History
+    [_dataCtrl createCityArrayToSavHistoryWithCityName:place.name];
 
     [_dataCtrl getLocationKeyWithSuccess:^{
         
@@ -200,8 +205,12 @@ didFailAutocompleteWithError:(NSError *)error {
             GMSPlace* place = likelihood.place;
             //NSLog(@"Current Place name %@ at likelihood %g", place.name, likelihood.likelihood);
             
+            //Save City Name in USerDefaults
             [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            //Add CityName in History
+            [_dataCtrl createCityArrayToSavHistoryWithCityName:place.name];
             
             [_dataCtrl getLocationKeyWithSuccess:^{
                 

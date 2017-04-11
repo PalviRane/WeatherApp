@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -387,7 +388,7 @@
         <!--History-->
         <scene sceneID="BHD-RJ-34Q">
             <objects>
-                <viewController id="47E-td-MlU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="47E-td-MlU" customClass="HistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="riB-SM-5uU"/>
                         <viewControllerLayoutGuide type="bottom" id="DPc-Mc-wRM"/>
@@ -400,67 +401,41 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ykm-wH-oNE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ykm-wH-oNE">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="97" id="UgY-Gd-TZf">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="97"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HistoryCellIdentifier" rowHeight="75" id="UgY-Gd-TZf" customClass="HistoryTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UgY-Gd-TZf" id="Icy-wJ-Csz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Nsme" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fl8-pi-7Yc">
-                                                    <rect key="frame" x="18" y="15" width="128" height="66.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHf-dp-qpx">
-                                                    <rect key="frame" x="178.5" y="32.5" width="27.5" height="31.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="23"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Kb-Sz-f22">
-                                                    <rect key="frame" x="258.5" y="32.5" width="27.5" height="31.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="23"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max °C" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q8-TG-hG2">
-                                                    <rect key="frame" x="169" y="65" width="47" height="19.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min °C" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fls-L1-FPe">
-                                                    <rect key="frame" x="251" y="65" width="43.5" height="19.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                    <rect key="frame" x="18" y="25" width="292" height="26"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.24313725489999999" green="0.36862745099999999" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="FHf-dp-qpx" firstAttribute="centerY" secondItem="Fl8-pi-7Yc" secondAttribute="centerY" id="BPA-8w-Y9M"/>
-                                                <constraint firstItem="Fls-L1-FPe" firstAttribute="centerY" secondItem="0Q8-TG-hG2" secondAttribute="centerY" id="Fca-30-B2A"/>
-                                                <constraint firstAttribute="bottom" secondItem="Fl8-pi-7Yc" secondAttribute="bottom" constant="15" id="GSz-75-vjg"/>
-                                                <constraint firstItem="5Kb-Sz-f22" firstAttribute="centerX" secondItem="Icy-wJ-Csz" secondAttribute="centerX" multiplier="1.7" id="ODX-t5-Dyl"/>
-                                                <constraint firstItem="FHf-dp-qpx" firstAttribute="centerX" secondItem="Icy-wJ-Csz" secondAttribute="centerX" multiplier="1.2" id="TNA-vo-BNT"/>
-                                                <constraint firstItem="Fl8-pi-7Yc" firstAttribute="leading" secondItem="Icy-wJ-Csz" secondAttribute="leading" constant="18" id="ZEH-3B-XVA"/>
-                                                <constraint firstItem="Fl8-pi-7Yc" firstAttribute="top" secondItem="Icy-wJ-Csz" secondAttribute="top" constant="15" id="Zox-vH-kE8"/>
-                                                <constraint firstItem="0Q8-TG-hG2" firstAttribute="top" secondItem="FHf-dp-qpx" secondAttribute="bottom" constant="1" id="evC-te-ffM"/>
-                                                <constraint firstItem="Fl8-pi-7Yc" firstAttribute="width" secondItem="Icy-wJ-Csz" secondAttribute="width" multiplier="0.4" id="il9-BP-CDb"/>
-                                                <constraint firstItem="Fls-L1-FPe" firstAttribute="centerX" secondItem="5Kb-Sz-f22" secondAttribute="centerX" id="jFO-Jy-mTj"/>
-                                                <constraint firstItem="5Kb-Sz-f22" firstAttribute="centerY" secondItem="FHf-dp-qpx" secondAttribute="centerY" id="vfE-TE-t1S"/>
-                                                <constraint firstItem="0Q8-TG-hG2" firstAttribute="centerX" secondItem="FHf-dp-qpx" secondAttribute="centerX" id="yvX-Y6-ogG"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fl8-pi-7Yc" secondAttribute="trailing" constant="10" id="Vif-fJ-aBB"/>
+                                                <constraint firstItem="Fl8-pi-7Yc" firstAttribute="leading" secondItem="Icy-wJ-Csz" secondAttribute="leadingMargin" constant="10" id="fUA-No-CAD"/>
+                                                <constraint firstItem="Fl8-pi-7Yc" firstAttribute="centerY" secondItem="Icy-wJ-Csz" secondAttribute="centerY" id="pU2-A5-v1R"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="cityNameLabel" destination="Fl8-pi-7Yc" id="Cq9-YB-Rni"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="47E-td-MlU" id="Fqp-dS-Jnu"/>
+                                    <outlet property="delegate" destination="47E-td-MlU" id="O5e-ka-mjk"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -474,8 +449,14 @@
                     <navigationItem key="navigationItem" title="History" id="X06-KD-vxB">
                         <barButtonItem key="leftBarButtonItem" image="back" id="Qrz-RN-8zp">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="backButtonAction:" destination="47E-td-MlU" id="IoC-ao-ztV"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="historyTableView" destination="Ykm-wH-oNE" id="x4h-CZ-Q0z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOx-X6-uO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

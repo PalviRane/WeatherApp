@@ -24,6 +24,9 @@
 		29A7E60C1E9AE29C00A60AAF /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E60B1E9AE29C00A60AAF /* Weather.m */; };
 		29A7E60F1E9AF59B00A60AAF /* WeatherDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E60E1E9AF59B00A60AAF /* WeatherDataController.m */; };
 		29A7E6121E9AF61F00A60AAF /* WelcomeDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6111E9AF61F00A60AAF /* WelcomeDataController.m */; };
+		29A7E6191E9C49E000A60AAF /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E6181E9C49E000A60AAF /* HistoryViewController.m */; };
+		29A7E61C1E9C49F900A60AAF /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E61B1E9C49F900A60AAF /* HistoryTableViewCell.m */; };
+		29A7E61F1E9C4A0D00A60AAF /* HistoryDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A7E61E1E9C4A0D00A60AAF /* HistoryDataController.m */; };
 		29D50B701E97D86700526640 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B6F1E97D86700526640 /* SignInViewController.m */; };
 		29D50B731E97D87D00526640 /* SignInDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B721E97D87D00526640 /* SignInDataController.m */; };
 		29D50B761E97D8B400526640 /* SignInCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D50B751E97D8B400526640 /* SignInCollectionViewCell.m */; };
@@ -81,6 +84,12 @@
 		29A7E60E1E9AF59B00A60AAF /* WeatherDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDataController.m; sourceTree = "<group>"; };
 		29A7E6101E9AF61F00A60AAF /* WelcomeDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeDataController.h; sourceTree = "<group>"; };
 		29A7E6111E9AF61F00A60AAF /* WelcomeDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeDataController.m; sourceTree = "<group>"; };
+		29A7E6171E9C49E000A60AAF /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		29A7E6181E9C49E000A60AAF /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		29A7E61A1E9C49F900A60AAF /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
+		29A7E61B1E9C49F900A60AAF /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
+		29A7E61D1E9C4A0D00A60AAF /* HistoryDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryDataController.h; sourceTree = "<group>"; };
+		29A7E61E1E9C4A0D00A60AAF /* HistoryDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryDataController.m; sourceTree = "<group>"; };
 		29D50B6E1E97D86700526640 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		29D50B6F1E97D86700526640 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		29D50B711E97D87D00526640 /* SignInDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInDataController.h; sourceTree = "<group>"; };
@@ -301,6 +310,8 @@
 		29A7E6131E9C423100A60AAF /* History */ = {
 			isa = PBXGroup;
 			children = (
+				29A7E6161E9C49BF00A60AAF /* View Controller */,
+				29A7E6151E9C49B000A60AAF /* DataController */,
 				29A7E6141E9C425500A60AAF /* Views */,
 			);
 			name = History;
@@ -309,8 +320,28 @@
 		29A7E6141E9C425500A60AAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				29A7E61A1E9C49F900A60AAF /* HistoryTableViewCell.h */,
+				29A7E61B1E9C49F900A60AAF /* HistoryTableViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		29A7E6151E9C49B000A60AAF /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				29A7E61D1E9C4A0D00A60AAF /* HistoryDataController.h */,
+				29A7E61E1E9C4A0D00A60AAF /* HistoryDataController.m */,
+			);
+			name = DataController;
+			sourceTree = "<group>";
+		};
+		29A7E6161E9C49BF00A60AAF /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				29A7E6171E9C49E000A60AAF /* HistoryViewController.h */,
+				29A7E6181E9C49E000A60AAF /* HistoryViewController.m */,
+			);
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 		29D50B6A1E97D80200526640 /* Sign In */ = {
@@ -554,9 +585,12 @@
 				29D50B761E97D8B400526640 /* SignInCollectionViewCell.m in Sources */,
 				2942E8291E96C974003CB273 /* AppDelegate.m in Sources */,
 				29A7E60F1E9AF59B00A60AAF /* WeatherDataController.m in Sources */,
+				29A7E61F1E9C4A0D00A60AAF /* HistoryDataController.m in Sources */,
 				296873721E9A77FD00EDD121 /* WeatherViewController.m in Sources */,
+				29A7E61C1E9C49F900A60AAF /* HistoryTableViewCell.m in Sources */,
 				29D50B701E97D86700526640 /* SignInViewController.m in Sources */,
 				29A7E60C1E9AE29C00A60AAF /* Weather.m in Sources */,
+				29A7E6191E9C49E000A60AAF /* HistoryViewController.m in Sources */,
 				2942E8261E96C974003CB273 /* main.m in Sources */,
 				29D50B731E97D87D00526640 /* SignInDataController.m in Sources */,
 				29A7E6121E9AF61F00A60AAF /* WelcomeDataController.m in Sources */,

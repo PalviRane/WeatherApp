@@ -26,5 +26,15 @@
     }];
 }
 
+-(void)createCityArrayToSavHistoryWithCityName:(NSString *)cityName
+{
+    NSMutableArray *historyArray = [[NSMutableArray alloc] init];
+    
+    [historyArray addObject:cityName];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:historyArray forKey:CITY_HISTORY_ARRAY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "WeatherViewController.h"
+#import "HistoryViewController.h"
 
 @interface WeatherViewController ()
 
@@ -56,19 +57,21 @@
     self.navigationController.navigationBar.hidden = NO;
     self.navigationItem.hidesBackButton = YES;
     
+    [self addLoadingView];
+    
     [self getWeatherDataForSelectedCity];
     
 }
 
 -(void)getWeatherDataForSelectedCity
 {
-    [self addLoadingView];
     
     [_dataCtrl getCurrentLocationWeatherWithSuccess:^{
         
+        [self setupView];
+        
         [self removeloadingView];
         
-        [self setupView];
         
     } onFailure:^{
         
@@ -91,6 +94,8 @@
 
 -(void)setupView
 {
+    
+    
     UIColor *randomColor = [self setRandomBackgroundColor];
     
     _backgroundView.backgroundColor = randomColor;
@@ -204,9 +209,11 @@
             [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
+            //Add city in history
+            [_dataCtrl modifyHistoryArrayWithCityName:place.name];
+            
             [_dataCtrl getLocationKeyWithSuccess:^{
                 
-                [self removeloadingView];
                 [self getWeatherDataForSelectedCity];
                 
             } onFailure:^{
@@ -229,21 +236,26 @@
 // Handle the user's selection.
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didAutocompleteWithPlace:(GMSPlace *)place {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self addLoadingView];
+    }];
     
-    [self addLoadingView];
+    
     
     // Do something with the selected place.
     // NSLog(@"Place name %@", place.name);
     
+    //Save City In User Defaults
     [[NSUserDefaults standardUserDefaults] setValue:place.name forKey:CITY_NAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    //Add city in history
+    [_dataCtrl modifyHistoryArrayWithCityName:place.name];
+    
     [_dataCtrl getLocationKeyWithSuccess:^{
         
-        [self removeloadingView];
-        
       [self getWeatherDataForSelectedCity];
+
         
     } onFailure:^{
         [self removeloadingView];
@@ -372,7 +384,9 @@ didFailAutocompleteWithError:(NSError *)error {
 
 - (IBAction)historyButtonAction:(id)sender
 {
+    HistoryViewController *historyViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HistoryViewController"];
     
+    [self.navigationController pushViewController:historyViewController animated:YES];
 }
 
 @end

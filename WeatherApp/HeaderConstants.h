@@ -25,6 +25,7 @@
 #define IS_USER_CITY_SELECTED @"isUserCitySelected"
 #define CITY_NAME @"cityName"
 #define CURRENT_LOCATION_KEY @"currentLocationKey"
+#define CITY_HISTORY_ARRAY @"cityHistoryArray"
 
 //Facebook Data Keys
 
