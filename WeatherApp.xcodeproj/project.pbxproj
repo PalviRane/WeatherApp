@@ -747,7 +747,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeatherApp",
-					"/Users/Pallavi/Downloads/FacebookSDKs-iOS-4.21.0",
+					"/Users/$(USER)/Documents/FacebookSDK",
 				);
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -764,7 +764,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeatherApp",
-					"/Users/Pallavi/Downloads/FacebookSDKs-iOS-4.21.0",
+					"/Users/$(USER)/Documents/FacebookSDK",
 				);
 				INFOPLIST_FILE = WeatherApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
