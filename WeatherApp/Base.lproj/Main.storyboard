@@ -415,20 +415,30 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City Nsme" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fl8-pi-7Yc">
                                                     <rect key="frame" x="18" y="25" width="292" height="26"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="19"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2f-Y4-tdf">
+                                                    <rect key="frame" x="0.0" y="71" width="320" height="3"/>
+                                                    <color key="backgroundColor" red="0.550647212" green="0.38066038159999999" blue="0.41333927500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="3" id="OkW-WR-CRU"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.24313725489999999" green="0.36862745099999999" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="C2f-Y4-tdf" secondAttribute="trailing" id="AEv-77-ihJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Fl8-pi-7Yc" secondAttribute="trailing" constant="10" id="Vif-fJ-aBB"/>
+                                                <constraint firstAttribute="bottom" secondItem="C2f-Y4-tdf" secondAttribute="bottom" id="bzH-MS-phh"/>
                                                 <constraint firstItem="Fl8-pi-7Yc" firstAttribute="leading" secondItem="Icy-wJ-Csz" secondAttribute="leadingMargin" constant="10" id="fUA-No-CAD"/>
                                                 <constraint firstItem="Fl8-pi-7Yc" firstAttribute="centerY" secondItem="Icy-wJ-Csz" secondAttribute="centerY" id="pU2-A5-v1R"/>
+                                                <constraint firstItem="C2f-Y4-tdf" firstAttribute="leading" secondItem="Icy-wJ-Csz" secondAttribute="leading" id="vSg-KU-7YT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="cityNameLabel" destination="Fl8-pi-7Yc" id="Cq9-YB-Rni"/>
+                                            <outlet property="seperatorView" destination="C2f-Y4-tdf" id="9mY-cX-fRM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

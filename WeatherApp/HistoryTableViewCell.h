@@ -13,6 +13,7 @@
 @interface HistoryTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *seperatorView;
 
 
 -(void)setupHistoryCellWithCityName:(NSString *)cityName;

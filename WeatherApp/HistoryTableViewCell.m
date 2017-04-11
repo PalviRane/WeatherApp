@@ -23,8 +23,7 @@
 
 -(void)setupHistoryCellWithCityName:(NSString *)cityName
 {
-    self.contentView.backgroundColor = [self setRandomBackgroundColor];
-    
+    _seperatorView.backgroundColor = [self setRandomBackgroundColor];
     _cityNameLabel.text = cityName;
 }
 
